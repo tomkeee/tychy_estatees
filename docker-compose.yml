@@ -1,0 +1,25 @@
+version: '3.10'
+
+volumes:
+  db-data:
+
+services:
+  web:
+      build: ./backend
+      command: python django_api/manage.py runserver 0.0.0.0:8000
+      volumes:
+        - ./backend:/code
+      ports:
+        - "4444:8000"
+
+  database:
+    image: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+
