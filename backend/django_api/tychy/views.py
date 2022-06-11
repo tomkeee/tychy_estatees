@@ -1,34 +1,38 @@
-from django.http import JsonResponse
-import os
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from django.http import FileResponse
+from datetime import date
 
-# Create your views here.
-
-
-def Home(request):
-    x = os.getcwd()
-    print(x)
-    os.environ["PYTHONPATH"] = "/code"
-    x = os.environ
-    # return JsonResponse(
-    #     {
-    #         "PYTHONPATH": os.environ.get("PYTHONPATH"),
-    #         "PATH": os.environ.get("PATH"),
-    #         "DATA":
-    #     }
-    # )
-    response = FileResponse(open("data/otodom_05_06_2022.json", "rb"))
-    return response
+from tychy.models import Flat
+from tychy.serializers.FlatSerializer import FlatSerializer
+from tychy.filters.FlatFilter import FlatFilter
+from rest_framework import generics
 
 
-@api_view(["GET"])
-def snippet_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == "GET":
-        # snippets = Snippet.objects.all()
-        # serializer = SnippetSerializer(snippets, many=True)
-        return Response({})
+class FlatListAll(generics.ListAPIView):
+    serializer_class = FlatSerializer
+
+    def get_queryset(self):
+        return Flat.objects.all()
+
+
+class FlatListToday(generics.ListAPIView):
+    serializer_class = FlatSerializer
+
+    def get_queryset(self):
+        return Flat.objects.filter(date=date.today())
+
+
+class FlatListFilter(generics.ListAPIView):
+    serializer_class = FlatSerializer
+
+    def get_queryset(self):
+        return Flat.objects.filter(date=date.today())
+
+    def filter_queryset(self, queryset):
+        query_params = self.request.query_params
+
+        qs = FlatFilter(
+            queryset=queryset,
+            data=self.request.query_params,
+            request=self.request,
+        ).qs
+
+        return qs

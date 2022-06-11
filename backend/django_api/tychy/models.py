@@ -10,7 +10,7 @@ class Flat(models.Model):
     rooms = models.PositiveIntegerField(null=True, blank=True)
     space = models.FloatField(null=True, blank=True)
     status = models.CharField(max_length=12, null=True, blank=True)
-    floor = models.JSONField(null=True, blank=True)
+    # floor = models.JSONField(null=True, blank=True)
     ownership = models.CharField(max_length=51, null=True, blank=True)
     heating = models.CharField(max_length=20, null=True, blank=True)
     car_park = models.BooleanField()
@@ -23,3 +23,7 @@ class Flat(models.Model):
     # flat_media = models.CharField()
     build_year = models.PositiveIntegerField(null=True, blank=True)
     building_material = models.CharField(max_length=20, null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.price} - {self.title} on {self.date}"
