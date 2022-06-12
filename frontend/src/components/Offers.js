@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Col from "react-bootstrap/Col"
-import Row from "react-bootstrap/Row"
 import Offer from "../components/Offer"
 
 
@@ -20,14 +18,12 @@ const Offers = () => {
         fetchFlats();
     }, []);
     
-    console.log(flats)
     
     return (
       <div>
             {flats.map(offer => 
               (
-                  <Offer offer={offer} />
-                  
+                  <Offer key={offer.id} offer={offer} />
               )
             )
             }

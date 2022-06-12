@@ -4,6 +4,7 @@ from sqlalchemy import create_engine
 
 from .models import Flat, Statistics
 from datetime import date
+import time
 
 
 def refer_value(reference, object):
@@ -14,7 +15,7 @@ def refer_value(reference, object):
     return value
 
 
-def get_pydantic_model(reference):
+def get_pydantic_model(reference, district, street):
     link = refer_value(reference, "link")
     title = refer_value(reference, "title")
     localization = refer_value(reference, "localization")
@@ -59,15 +60,17 @@ def get_pydantic_model(reference):
         flat_media=flat_media,
         build_year=build_year,
         building_material=building_material,
+        district=district,
+        street=street,
     )
     return flat_pydantic
 
 
-def save_flat_to_db(item):
+def save_flat_to_db(item, district, street):
     with Session(
         create_engine("postgresql://postgres:postgres@database:5432/postgres")
     ) as session:
-        flat_pydantic = get_pydantic_model(item)
+        flat_pydantic = get_pydantic_model(item, district, street)
         flat = Flat(**flat_pydantic.dict(), date=date.today())
         session.add(flat)
         session.commit()

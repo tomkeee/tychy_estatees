@@ -34,6 +34,9 @@ class FlatSchema(BaseModel):
     floor: Optional[dict] = None
     additionals: Optional[List[str]] = None
 
+    district: Optional[str] = None
+    street: Optional[str] = None
+
     @validator("additionals", pre=True, each_item=True)
     def additionals_each_element_should_be_a_string(cls, add_list):
         additionals_as_string = ""

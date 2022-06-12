@@ -268,3 +268,88 @@ def get_building_material(data):
     if data == "inne":
         return BuildingMaterial.OTHER.value
     return None
+
+
+def get_district(data):
+    data = data.split()
+    district = None
+
+    for i in range(0, len(data)):
+        data[i] = data[i].lower()
+
+        if "osiedle" in data[i] or "os" in data[i]:
+            district = data[i + 1].lower()
+            break
+
+        if "tychy" in data[i]:
+            if data[i + 1].lower() != "śląskie":
+                district = data[i + 1].lower()
+                break
+
+        if "ulica" in data[i] or "ul" in data[i]:
+            district = data[i + 1].lower()
+            break
+
+        if "aleja" in data[i] or "al" in data[i] or "al." in data[i]:
+            if data[i + 1].lower() == "gen" or data[i + 1].lower() == "gen.":
+                district = data[i + 2].lower()
+                break
+            if (
+                data[i + 1].lower() == "m"
+                or data[i + 1].lower() == "m."
+                or data[i + 1].lower() == "marsz."
+            ):
+                district = data[i + 2].lower()
+                break
+            else:
+                district = data[i + 1].lower()
+                break
+
+    if district:
+        district = district.replace(",", "")
+        district = district.replace("-", "")
+        district = district.replace(" ", "")
+
+    return district
+
+
+DISTRICTS = (
+    "cielmice",
+    "czułów",
+    "glinka",
+    "jaroszowice",
+    "mąkołowiec",
+    "paprocany",
+    "radziejówka",
+    "stare Tychy",
+    "suble",
+    "śródmieście",
+    "urbanowice",
+    "wartogłowiec",
+    "wilkowyje",
+    "wygorzele",
+    "zawiść",
+    "zwierzyniec",
+    "żwaków",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "k",
+    "l",
+    "ł",
+    "m",
+    "n",
+    "o",
+    "p",
+    "r",
+    "s",
+    "t",
+    "u",
+    "w",
+    "z",
+)

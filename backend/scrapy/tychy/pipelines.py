@@ -8,6 +8,11 @@ from .utils import (
     get_newest_flat,
 )
 
+from tychy.filters.top_information import (
+    get_district,
+    DISTRICTS,
+)
+
 
 class TychyPipeline:
     is_first = True
@@ -27,9 +32,6 @@ class TychyPipeline:
     estates_list = []
 
     def process_item(self, item, spider):
-        if self.save_to_db:
-            save_flat_to_db(item)
-
         try:
             flat_price = item["price"]
         except:
@@ -61,7 +63,21 @@ class TychyPipeline:
             self.flat_unknown_space += 1
             self.flat_number += 1
 
-        self.estates_list.append(dict(item))
+        item_as_dict = dict(item)
+        item_as_dict["district"] = None
+        item_as_dict["street"] = None
+
+        localization_details = get_district(item["localization"])
+        if localization_details in DISTRICTS:
+            item_as_dict["district"] = localization_details
+
+        elif localization_details:
+            item_as_dict["street"] = localization_details
+
+        self.estates_list.append(item_as_dict)
+
+        if self.save_to_db:
+            save_flat_to_db(item, item_as_dict["district"], item_as_dict["street"])
         return item
 
     def open_spider(self, spider):

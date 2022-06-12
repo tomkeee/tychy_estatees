@@ -32,6 +32,10 @@ class Flat(Base):
     building_material = Column(String(300), nullable=True)
 
     additionals = Column(String(3000), nullable=True)
+
+    district = Column(String(3000), nullable=True)
+    street = Column(String(3000), nullable=True)
+
     date = Column(Date(), nullable=True)
 
 
