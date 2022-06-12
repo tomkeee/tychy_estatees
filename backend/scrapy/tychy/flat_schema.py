@@ -15,7 +15,7 @@ class FlatSchema(BaseModel):
     rent: Optional[int] = None
 
     rooms: Optional[int] = None
-    space: Optional[int] = None
+    space: Optional[float] = None
     status: Optional[str]
     # floor : str = None
     ownership: Optional[str] = None

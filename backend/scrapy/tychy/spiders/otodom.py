@@ -9,6 +9,7 @@ from tychy.items import EstatesItem
 
 from tychy.filters.top_information import (
     get_price,
+    get_space,
     get_flat_status,
     get_flat_floor,
     get_form_of_ownership,
@@ -79,12 +80,13 @@ class OtodomSpider(scrapy.Spider):
         rent_response = response.xpath(
             "//div[@aria-label='Czynsz']//div[@class='css-1wi2w6s estckra5']/text()"
         ).get()
-        flat_rent = get_price(rent_response)
+        flat_rent = get_space(rent_response)
 
         space_response = response.xpath(
             "//div[@aria-label='Powierzchnia']//div[@class='css-1wi2w6s estckra5']/text()"
         ).get()
-        flat_space = get_price(space_response)
+
+        flat_space = get_space(space_response)
 
         room_number_response = response.xpath(
             "//div[@aria-label='Liczba pokoi']//div[@class='css-1wi2w6s estckra5']/text()"

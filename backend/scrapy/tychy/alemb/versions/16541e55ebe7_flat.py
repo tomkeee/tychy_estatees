@@ -40,6 +40,20 @@ def upgrade():
         sa.Column("build_year", sa.Integer(), nullable=True),
         sa.Column("building_material", sa.String(length=300), nullable=True),
         sa.Column("additionals", sa.String(length=3000), nullable=True),
+        sa.Column("date", sa.Date(), nullable=True),
+        sa.Column("floor", sa.PickleType(), nullable=True),
+        sa.Column("flat_media", sa.String(length=3000), nullable=True),
+        sa.PrimaryKeyConstraint("id"),
+    )
+
+    op.create_table(
+        "flats_statistics",
+        sa.Column("id", sa.Integer(), nullable=False),
+        sa.Column("flat_number", sa.Integer(), nullable=True),
+        sa.Column("flat_average_price", sa.Float(), nullable=True),
+        sa.Column("flat_average_rent", sa.Float(), nullable=True),
+        sa.Column("flat_m2_average_price", sa.Float(), nullable=True),
+        sa.Column("date", sa.Date(), nullable=True),
         sa.PrimaryKeyConstraint("id"),
     )
     # ### end Alembic commands ###

@@ -34,6 +34,25 @@ def get_price(data):
     return numeric_value
 
 
+def get_space(data):
+    if data is None:
+        return None
+
+    values = []
+    for s in data.split():
+        s = s.replace(",", ".")
+        try:
+            z = float(s)
+            values.append(s)
+        except:
+            s = s
+    if len(values) >= 1:
+        numeric_value = float("".join(values))
+    else:
+        numeric_value = None
+    return numeric_value
+
+
 def get_number_of_rooms(data):
     if data is None:
         return None
