@@ -29,8 +29,6 @@ class FlatListFilter(generics.ListAPIView):
         return Flat.objects.filter(date=date.today())
 
     def filter_queryset(self, queryset):
-        query_params = self.request.query_params
-
         qs = FlatFilter(
             queryset=queryset,
             data=self.request.query_params,

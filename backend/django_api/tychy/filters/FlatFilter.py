@@ -10,4 +10,4 @@ class FlatFilter(django_filters.FilterSet):
 
     class Meta:
         model = Flat
-        fields = "__all__"
+        fields = ("price", "district", "street")

@@ -7,6 +7,17 @@ class additionals(BaseModel):
     name: str
 
 
+class LocationSchema(BaseModel):
+    street: Optional[boolean] = None
+    district: Optional[boolean] = None
+    location: Optional[str] = None
+    flat_number: Optional[int] = None
+    flat_average_price: Optional[float] = None
+    flat_average_rent: Optional[float] = None
+    flat_m2_average_price: Optional[float] = None
+    date: Optional[float] = None
+
+
 class FlatSchema(BaseModel):
     link: Optional[str] = None
     title: Optional[str] = None

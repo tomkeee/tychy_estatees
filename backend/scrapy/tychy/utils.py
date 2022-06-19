@@ -1,10 +1,9 @@
 from .flat_schema import FlatSchema
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
-
-from .models import Flat, Statistics
+import json
+from .models import Flat, Statistics, Streets, Districts
 from datetime import date
-import time
 
 
 def refer_value(reference, object):
@@ -77,6 +76,26 @@ def save_flat_to_db(item, district, street):
         session.refresh(flat)
 
 
+# def save_location_to_db(item, district, street):
+#     with Session(
+#         create_engine("postgresql://postgres:postgres@database:5432/postgres")
+#     ) as session:
+#         if street:
+#             street = True
+#             location = street
+#         if district:
+#             district = True
+#             location = district
+
+#         location = LocationSchema(
+#             street=street,
+#             district=district,
+#             location=location,
+#             flat_number = item['flat_number'],
+#             flat_number = item['flat_number'],
+#         )
+
+
 def save_statistics_to_db(data):
     with Session(
         create_engine("postgresql://postgres:postgres@database:5432/postgres")
@@ -85,6 +104,54 @@ def save_statistics_to_db(data):
         session.add(stats)
         session.commit()
         session.refresh(stats)
+
+
+def save_streets_to_db(
+    location=None,
+    flat_number=None,
+    flat_average_price=None,
+    flat_average_rent=None,
+    flat_m2_average_price=None,
+):
+    with Session(
+        create_engine("postgresql://postgres:postgres@database:5432/postgres")
+    ) as session:
+        street_to_db = Streets(
+            location=location,
+            flat_number=flat_number,
+            flat_average_price=flat_average_price,
+            flat_average_rent=flat_average_rent,
+            flat_m2_average_price=flat_m2_average_price,
+            date=date.today(),
+        )
+        session.add(street_to_db)
+        session.commit()
+        session.refresh(street_to_db)
+
+
+def save_districts_to_db(
+    location=None,
+    flat_number=None,
+    flat_average_price=None,
+    flat_average_rent=None,
+    flat_m2_average_price=None,
+    is_district=False,
+    is_street=False,
+):
+    with Session(
+        create_engine("postgresql://postgres:postgres@database:5432/postgres")
+    ) as session:
+        district_to_db = Districts(
+            location=location,
+            flat_number=flat_number,
+            flat_average_price=flat_average_price,
+            flat_average_rent=flat_average_rent,
+            flat_m2_average_price=flat_m2_average_price,
+            date=date.today(),
+        )
+        session.add(district_to_db)
+        session.commit()
+        session.refresh(district_to_db)
 
 
 def get_newest_flat():
@@ -103,3 +170,27 @@ def get_newest_stats():
         stats = session.query(Statistics).order_by(Statistics.date.desc()).first()
 
     return stats
+
+
+def get_newest_location_streets():
+    with Session(
+        create_engine("postgresql://postgres:postgres@database:5432/postgres")
+    ) as session:
+        street = session.query(Streets).order_by(Streets.date.desc()).first()
+    return street
+
+
+def get_newest_location_districts():
+    with Session(
+        create_engine("postgresql://postgres:postgres@database:5432/postgres")
+    ) as session:
+        district = session.query(Districts).order_by(Districts.date.desc()).first()
+    return district
+
+
+def add_dict_to_json(data, file):
+    line = json.dumps(dict(data), ensure_ascii=False)
+    file.write(line)
+
+    new_line = "," + "\n"
+    file.write(new_line)

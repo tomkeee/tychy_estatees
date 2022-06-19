@@ -6,6 +6,11 @@ from .utils import (
     save_flat_to_db,
     save_statistics_to_db,
     get_newest_flat,
+    save_districts_to_db,
+    save_streets_to_db,
+    add_dict_to_json,
+    get_newest_location_streets,
+    get_newest_location_districts,
 )
 
 from tychy.filters.top_information import (
@@ -18,6 +23,8 @@ class TychyPipeline:
     is_first = True
     save_to_db = False
     save_stats_to_db = False
+    save_streets_to_db = False
+    save_districts_to_db = False
 
     total_value = 0
     total_value_known_space = 0
@@ -31,15 +38,20 @@ class TychyPipeline:
 
     estates_list = []
 
+    streets = {}
+    districts = {}
+
     def process_item(self, item, spider):
         try:
             flat_price = item["price"]
         except:
+            item["price"] = None
             flat_price = None
 
         try:
             flat_space = item["space"]
         except:
+            item["space"] = None
             flat_space = None
 
         if flat_price and flat_space:
@@ -68,11 +80,79 @@ class TychyPipeline:
         item_as_dict["street"] = None
 
         localization_details = get_district(item["localization"])
+
         if localization_details in DISTRICTS:
-            item_as_dict["district"] = localization_details
+            item_as_dict["districts"] = localization_details
+            if localization_details in self.districts.keys():
+                self.districts[localization_details]["flat_number"] += 1
+                if item["price"] is not None:
+                    self.districts[localization_details]["flats_value"] += item["price"]
+                    self.districts[localization_details]["flats_number_value"] += 1
+                if (item["price"] is not None) and (item["space"] is not None):
+                    self.districts[localization_details]["flats_space"] += item["space"]
+                    self.districts[localization_details]["flats_value_space"] += item[
+                        "price"
+                    ]
+                    self.districts[localization_details]["flats_number_space"] += 1
+
+            else:
+                self.districts[localization_details] = {
+                    "flat_number": 1,
+                    "flats_number_value": 0,
+                }
+                if item["price"] is not None:
+                    self.districts[localization_details]["flats_value"] = item["price"]
+                    self.districts[localization_details]["flats_number_value"] = 1
+                else:
+                    self.districts[localization_details]["flats_value"] = 0
+                    self.districts[localization_details]["flats_number_value"] = 0
+
+                if (item["price"] is not None) and (item["space"] is not None):
+                    self.districts[localization_details]["flats_space"] = item["space"]
+                    self.districts[localization_details]["flats_value_space"] = item[
+                        "price"
+                    ]
+                    self.districts[localization_details]["flats_number_space"] = 1
+                else:
+                    self.districts[localization_details]["flats_space"] = 0
+                    self.districts[localization_details]["flats_value_space"] = 0
+                    self.districts[localization_details]["flats_number_space"] = 0
 
         elif localization_details:
-            item_as_dict["street"] = localization_details
+            item_as_dict["streets"] = localization_details
+            if localization_details in self.streets.keys():
+                self.streets[localization_details]["flat_number"] += 1
+                if item["price"] is not None:
+                    self.streets[localization_details]["flats_value"] += item["price"]
+                    self.streets[localization_details]["flats_number_value"] += 1
+                if (item["price"] is not None) and (item["space"] is not None):
+                    self.streets[localization_details]["flats_space"] += item["space"]
+                    self.streets[localization_details]["flats_value_space"] += item[
+                        "price"
+                    ]
+                    self.streets[localization_details]["flats_number_space"] += 1
+
+            else:
+                self.streets[localization_details] = {
+                    "flat_number": 1,
+                    "flats_number_value": 0,
+                }
+                if item["price"] is not None:
+                    self.streets[localization_details]["flats_value"] = item["price"]
+                    self.streets[localization_details]["flats_number_value"] = 1
+                else:
+                    self.streets[localization_details]["flats_value"] = 0
+                    self.streets[localization_details]["flats_number_value"] = 0
+                if (item["price"] is not None) and (item["space"] is not None):
+                    self.streets[localization_details]["flats_space"] = item["space"]
+                    self.streets[localization_details]["flats_value_space"] = item[
+                        "price"
+                    ]
+                    self.streets[localization_details]["flats_number_space"] = 1
+                else:
+                    self.streets[localization_details]["flats_space"] = 0
+                    self.streets[localization_details]["flats_value_space"] = 0
+                    self.streets[localization_details]["flats_number_space"] = 0
 
         self.estates_list.append(item_as_dict)
 
@@ -93,14 +173,26 @@ class TychyPipeline:
         else:
             self.save_to_db = False
 
+        street = get_newest_location_streets()
+        if street is None or street.date != date.today():
+            self.save_streets_to_db = True
+        else:
+            self.save_streets_to_db = False
+
+        district = get_newest_location_districts()
+        if district is None or district.date != date.today():
+            self.save_districts_to_db = True
+        else:
+            self.save_districts_to_db = False
+
     def close_spider(self, spider):
         today = date.today()
+
         self.file = open(
             f"/code/data/otodom_{today.strftime('%d_%m_%Y')}.json",
             "w",
             encoding="utf8",
         )
-
         self.file.write("[" + "\n")
 
         summary_data = {
@@ -110,11 +202,45 @@ class TychyPipeline:
             "flat_m2_average_price": self.total_value_known_space / self.total_space,
         }
 
-        line = json.dumps(dict(summary_data), ensure_ascii=False)
-        self.file.write(line)
+        add_dict_to_json(summary_data, self.file)
 
-        new_line = "," + "\n"
-        self.file.write(new_line)
+        for i in self.streets:
+            self.streets[i]["flat_m2_average_price"] = (
+                self.streets[i]["flats_value"] / self.streets[i]["flats_number_value"]
+            )
+            self.streets[i]["average_price_m2"] = (
+                self.streets[i]["flats_value_space"] / self.streets[i]["flats_space"]
+            )
+
+            save_streets_to_db(
+                location=i,
+                flat_number=self.streets[i]["flat_number"],
+                flat_average_price=self.streets[i]["average_price_m2"],
+                flat_average_rent=None,
+                flat_m2_average_price=self.streets[i]["flat_m2_average_price"],
+            )
+
+        add_dict_to_json(self.streets, self.file)
+
+        for i in self.districts:
+            self.districts[i]["flat_m2_average_price"] = (
+                self.districts[i]["flats_value"]
+                / self.districts[i]["flats_number_value"]
+            )
+            self.districts[i]["average_price_m2"] = (
+                self.districts[i]["flats_value_space"]
+                / self.districts[i]["flats_space"]
+            )
+
+            save_districts_to_db(
+                location=i,
+                flat_number=self.districts[i]["flat_number"],
+                flat_average_price=self.districts[i]["average_price_m2"],
+                flat_average_rent=None,
+                flat_m2_average_price=self.districts[i]["flat_m2_average_price"],
+            )
+
+        add_dict_to_json(self.streets, self.file)
 
         for i in self.estates_list:
             if self.is_first:

@@ -27,6 +27,9 @@ class Flat(models.Model):
     building_material = models.CharField(max_length=20, null=True, blank=True)
     date = models.DateField(null=True, blank=True)
 
+    district = models.CharField(max_length=20, null=True, blank=True)
+    street = models.CharField(max_length=20, null=True, blank=True)
+
     def __str__(self):
         return f"{self.price} - {self.title} on {self.date}"
 

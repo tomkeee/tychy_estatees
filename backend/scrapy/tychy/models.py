@@ -47,3 +47,25 @@ class Statistics(Base):
     flat_average_rent = Column(Float(), nullable=True)
     flat_m2_average_price = Column(Float(), nullable=True)
     date = Column(Date(), nullable=True)
+
+
+class Districts(Base):
+    __tablename__ = "flats_districts"
+    id = Column(Integer(), primary_key=True)
+    location = Column(String(3000), nullable=True)
+    flat_number = Column(Integer(), nullable=True)
+    flat_average_price = Column(Float(), nullable=True)
+    flat_average_rent = Column(Float(), nullable=True)
+    flat_m2_average_price = Column(Float(), nullable=True)
+    date = Column(Date(), nullable=True)
+
+
+class Streets(Base):
+    __tablename__ = "flats_streets"
+    id = Column(Integer(), primary_key=True)
+    location = Column(String(3000), nullable=True)
+    flat_number = Column(Integer(), nullable=True)
+    flat_average_price = Column(Float(), nullable=True)
+    flat_average_rent = Column(Float(), nullable=True)
+    flat_m2_average_price = Column(Float(), nullable=True)
+    date = Column(Date(), nullable=True)
