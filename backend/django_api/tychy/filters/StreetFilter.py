@@ -1,12 +1,13 @@
 import django_filters
 from django_filters import rest_framework as filters
-from tychy.models import Flat
+from tychy.models import Streets
 
 
-class FlatFilter(django_filters.FilterSet):
+class StreetFilter(django_filters.FilterSet):
     min_price = filters.NumberFilter(field_name="price", lookup_expr="gte")
     max_price = filters.NumberFilter(field_name="price", lookup_expr="lte")
+    location = filters.CharFilter(lookup_expr="icontains")
 
     class Meta:
-        model = Flat
-        fields = ("price", "district", "street")
+        model = Streets
+        fields = "__all__"

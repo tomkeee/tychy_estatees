@@ -43,3 +43,27 @@ class Statistics(models.Model):
 
     class Meta:
         db_table = "flats_statistics"
+
+
+class Districts(models.Model):
+    location = models.CharField(max_length=300, null=True, blank=True)
+    flat_number = models.PositiveIntegerField(null=True, blank=True)
+    flat_average_price = models.FloatField(null=True, blank=True)
+    flat_average_rent = models.FloatField(null=True, blank=True)
+    flat_m2_average_price = models.FloatField(null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
+
+    class Meta:
+        db_table = "flats_districts"
+
+
+class Streets(models.Model):
+    location = models.CharField(max_length=300, null=True, blank=True)
+    flat_number = models.PositiveIntegerField(null=True, blank=True)
+    flat_average_price = models.FloatField(null=True, blank=True)
+    flat_average_rent = models.FloatField(null=True, blank=True)
+    flat_m2_average_price = models.FloatField(null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
+
+    class Meta:
+        db_table = "flats_streets"

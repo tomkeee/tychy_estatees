@@ -212,13 +212,14 @@ class TychyPipeline:
                 self.streets[i]["flats_value_space"] / self.streets[i]["flats_space"]
             )
 
-            save_streets_to_db(
-                location=i,
-                flat_number=self.streets[i]["flat_number"],
-                flat_average_price=self.streets[i]["average_price_m2"],
-                flat_average_rent=None,
-                flat_m2_average_price=self.streets[i]["flat_m2_average_price"],
-            )
+            if self.save_streets_to_db:
+                save_streets_to_db(
+                    location=i,
+                    flat_number=self.streets[i]["flat_number"],
+                    flat_average_price=self.streets[i]["average_price_m2"],
+                    flat_average_rent=None,
+                    flat_m2_average_price=self.streets[i]["flat_m2_average_price"],
+                )
 
         add_dict_to_json(self.streets, self.file)
 
@@ -232,15 +233,16 @@ class TychyPipeline:
                 / self.districts[i]["flats_space"]
             )
 
-            save_districts_to_db(
-                location=i,
-                flat_number=self.districts[i]["flat_number"],
-                flat_average_price=self.districts[i]["average_price_m2"],
-                flat_average_rent=None,
-                flat_m2_average_price=self.districts[i]["flat_m2_average_price"],
-            )
+            if self.save_districts_to_db:
+                save_districts_to_db(
+                    location=i,
+                    flat_number=self.districts[i]["flat_number"],
+                    flat_average_price=self.districts[i]["average_price_m2"],
+                    flat_average_rent=None,
+                    flat_m2_average_price=self.districts[i]["flat_m2_average_price"],
+                )
 
-        add_dict_to_json(self.streets, self.file)
+        add_dict_to_json(self.districts, self.file)
 
         for i in self.estates_list:
             if self.is_first:
