@@ -82,7 +82,7 @@ class TychyPipeline:
         localization_details = get_district(item["localization"])
 
         if localization_details in DISTRICTS:
-            item_as_dict["districts"] = localization_details
+            item_as_dict["district"] = localization_details
             if localization_details in self.districts.keys():
                 self.districts[localization_details]["flat_number"] += 1
                 if item["price"] is not None:
@@ -119,7 +119,7 @@ class TychyPipeline:
                     self.districts[localization_details]["flats_number_space"] = 0
 
         elif localization_details:
-            item_as_dict["streets"] = localization_details
+            item_as_dict["street"] = localization_details
             if localization_details in self.streets.keys():
                 self.streets[localization_details]["flat_number"] += 1
                 if item["price"] is not None:
@@ -154,10 +154,9 @@ class TychyPipeline:
                     self.streets[localization_details]["flats_value_space"] = 0
                     self.streets[localization_details]["flats_number_space"] = 0
 
-        self.estates_list.append(item_as_dict)
-
         if self.save_to_db:
             save_flat_to_db(item, item_as_dict["district"], item_as_dict["street"])
+        self.estates_list.append(item_as_dict)
         return item
 
     def open_spider(self, spider):

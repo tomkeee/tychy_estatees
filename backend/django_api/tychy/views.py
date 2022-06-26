@@ -28,13 +28,6 @@ class FlatListToday(generics.ListAPIView):
     def get_queryset(self):
         return Flat.objects.filter(date=date.today())
 
-
-class FlatListFilter(generics.ListAPIView):
-    serializer_class = FlatSerializer
-
-    def get_queryset(self):
-        return Flat.objects.filter(date=date.today())
-
     def filter_queryset(self, queryset):
         qs = FlatFilter(
             queryset=queryset,
@@ -50,7 +43,7 @@ class StatisticsListAll(generics.ListAPIView):
 
     def get_queryset(self):
         queryset = Statistics.objects.all()
-        ordered_queryset = queryset.order_by("-date")
+        ordered_queryset = queryset.order_by("date")
         return ordered_queryset
 
 

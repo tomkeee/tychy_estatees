@@ -76,26 +76,6 @@ def save_flat_to_db(item, district, street):
         session.refresh(flat)
 
 
-# def save_location_to_db(item, district, street):
-#     with Session(
-#         create_engine("postgresql://postgres:postgres@database:5432/postgres")
-#     ) as session:
-#         if street:
-#             street = True
-#             location = street
-#         if district:
-#             district = True
-#             location = district
-
-#         location = LocationSchema(
-#             street=street,
-#             district=district,
-#             location=location,
-#             flat_number = item['flat_number'],
-#             flat_number = item['flat_number'],
-#         )
-
-
 def save_statistics_to_db(data):
     with Session(
         create_engine("postgresql://postgres:postgres@database:5432/postgres")
