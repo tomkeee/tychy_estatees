@@ -1,6 +1,17 @@
 from xmlrpc.client import Boolean
 from .database import Base
-from sqlalchemy import Column, Integer, String, Float, Boolean, PickleType, Date
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    Float,
+    Boolean,
+    PickleType,
+    Date,
+    ForeignKey,
+)
+from sqlalchemy_imageattach.entity import Image, image_attachment
+from sqlalchemy.orm import relationship
 
 
 class Flat(Base):
@@ -38,6 +49,8 @@ class Flat(Base):
 
     date = Column(Date(), nullable=True)
 
+    picture = image_attachment("FlatPicture")
+
 
 class Statistics(Base):
     __tablename__ = "flats_statistics"
@@ -69,3 +82,11 @@ class Streets(Base):
     flat_average_rent = Column(Float(), nullable=True)
     flat_m2_average_price = Column(Float(), nullable=True)
     date = Column(Date(), nullable=True)
+
+
+class FlatPicture(Base, Image):
+    """User picture model."""
+
+    flat_id = Column(Integer, ForeignKey("tychy_flat.id"), primary_key=True)
+    flat = relationship("Flat")
+    __tablename__ = "flat_picture"

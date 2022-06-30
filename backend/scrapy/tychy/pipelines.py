@@ -160,29 +160,30 @@ class TychyPipeline:
         return item
 
     def open_spider(self, spider):
-        flat = get_newest_flat()
-        if flat is None or flat.date != date.today():
-            self.save_stats_to_db = True
-        else:
-            self.save_stats_to_db = False
+        pass
+        # flat = get_newest_flat()
+        # if flat is None or flat.date != date.today():
+        #     self.save_stats_to_db = True
+        # else:
+        #     self.save_stats_to_db = False
 
-        stat = get_newest_stats()
-        if stat is None or stat.date != date.today():
-            self.save_to_db = True
-        else:
-            self.save_to_db = False
+        # stat = get_newest_stats()
+        # if stat is None or stat.date != date.today():
+        #     self.save_to_db = True
+        # else:
+        #     self.save_to_db = False
 
-        street = get_newest_location_streets()
-        if street is None or street.date != date.today():
-            self.save_streets_to_db = True
-        else:
-            self.save_streets_to_db = False
+        # street = get_newest_location_streets()
+        # if street is None or street.date != date.today():
+        #     self.save_streets_to_db = True
+        # else:
+        #     self.save_streets_to_db = False
 
-        district = get_newest_location_districts()
-        if district is None or district.date != date.today():
-            self.save_districts_to_db = True
-        else:
-            self.save_districts_to_db = False
+        # district = get_newest_location_districts()
+        # if district is None or district.date != date.today():
+        #     self.save_districts_to_db = True
+        # else:
+        #     self.save_districts_to_db = False
 
     def close_spider(self, spider):
         today = date.today()
