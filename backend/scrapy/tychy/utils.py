@@ -65,22 +65,28 @@ def get_pydantic_model(reference, district, street):
     return flat_pydantic
 
 
-def save_flat_to_db(item, district, street):
+def save_flat_to_db(item, district, street,given_date=None):
     with Session(
         create_engine("postgresql://postgres:postgres@database:5432/postgres")
     ) as session:
         flat_pydantic = get_pydantic_model(item, district, street)
-        flat = Flat(**flat_pydantic.dict(), date=date.today())
+        if given_date:
+            flat = Flat(**flat_pydantic.dict(), date=date(given_date[2],given_date[1],given_date[0]))
+        else:
+            flat = Flat(**flat_pydantic.dict(), date=date.today())
         session.add(flat)
         session.commit()
         session.refresh(flat)
 
 
-def save_statistics_to_db(data):
+def save_statistics_to_db(data,given_date=None):
     with Session(
         create_engine("postgresql://postgres:postgres@database:5432/postgres")
     ) as session:
-        stats = Statistics(**data, date=date.today())
+        if given_date:
+            stats = Statistics(**data, date=date(given_date[2],given_date[1],given_date[0]))
+        else:
+            stats = Statistics(**data, date=date.today())
         session.add(stats)
         session.commit()
         session.refresh(stats)

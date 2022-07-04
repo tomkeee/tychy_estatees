@@ -14,6 +14,10 @@ from tychy.filters.FlatFilter import FlatFilter
 from tychy.filters.StreetFilter import StreetFilter
 from tychy.filters.DistrictFilter import DistrictFilter
 
+from os import listdir
+from os.path import isfile, join
+
+mypath = "/code/data"
 
 class FlatListAll(generics.ListAPIView):
     serializer_class = FlatSerializer
@@ -92,3 +96,28 @@ class StreetList(views.APIView):
         )
 
         return Response(sorted(streets))
+
+class UpdateStatistics(views.APIView):
+    def get(self, request):
+        files = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+
+        dates = []
+        for file in files:
+            if file.endswith(".json"):
+                given_date = []
+
+                date_from_file = file.split("_")
+
+                given_date.append(int(date_from_file[1]))
+                given_date.append(int(date_from_file[2]))
+                given_date.append(int(date_from_file[3].replace(".json","")))
+
+                dates.append(given_date)
+            
+
+            
+        
+
+
+
+        return Response(sorted(dates))

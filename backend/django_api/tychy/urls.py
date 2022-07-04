@@ -7,8 +7,9 @@ from tychy.views import (
     DistrictListView,
     StreetListView,
     StreetList,
+    UpdateStatistics
 )
-from tychy.services.flat_actions import remove_flats
+from tychy.services.flat_actions import remove_data,remove_todays_data
 
 urlpatterns = [
     path("list/all", FlatListAll.as_view()),
@@ -18,5 +19,7 @@ urlpatterns = [
     path("districts/", DistrictListView.as_view()),
     path("streets/", StreetListView.as_view()),
     path("list/streets/", StreetList.as_view()),
-    path("remove/today", remove_flats),
+    path("update/stats", UpdateStatistics.as_view()),
+    path("remove/data/today", remove_todays_data),
+    path("remove/data/all", remove_data),
 ]
