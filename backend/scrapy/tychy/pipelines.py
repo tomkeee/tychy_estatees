@@ -160,30 +160,29 @@ class TychyPipeline:
         return item
 
     def open_spider(self, spider):
-        pass
-        # flat = get_newest_flat()
-        # if flat is None or flat.date != date.today():
-        #     self.save_stats_to_db = True
-        # else:
-        #     self.save_stats_to_db = False
+        flat = get_newest_flat()
+        if flat is None or flat.date != date.today():
+            self.save_stats_to_db = True
+        else:
+            self.save_stats_to_db = False
 
-        # stat = get_newest_stats()
-        # if stat is None or stat.date != date.today():
-        #     self.save_to_db = True
-        # else:
-        #     self.save_to_db = False
+        stat = get_newest_stats()
+        if stat is None or stat.date != date.today():
+            self.save_to_db = True
+        else:
+            self.save_to_db = False
 
-        # street = get_newest_location_streets()
-        # if street is None or street.date != date.today():
-        #     self.save_streets_to_db = True
-        # else:
-        #     self.save_streets_to_db = False
+        street = get_newest_location_streets()
+        if street is None or street.date != date.today():
+            self.save_streets_to_db = True
+        else:
+            self.save_streets_to_db = False
 
-        # district = get_newest_location_districts()
-        # if district is None or district.date != date.today():
-        #     self.save_districts_to_db = True
-        # else:
-        #     self.save_districts_to_db = False
+        district = get_newest_location_districts()
+        if district is None or district.date != date.today():
+            self.save_districts_to_db = True
+        else:
+            self.save_districts_to_db = False
 
     def close_spider(self, spider):
         today = date.today()
@@ -205,10 +204,10 @@ class TychyPipeline:
         add_dict_to_json(summary_data, self.file)
 
         for i in self.streets:
-            self.streets[i]["flat_m2_average_price"] = (
+            self.streets[i]["flat_average_price"] = (
                 self.streets[i]["flats_value"] / self.streets[i]["flats_number_value"]
             )
-            self.streets[i]["average_price_m2"] = (
+            self.streets[i]["flat_m2_average_price"] = (
                 self.streets[i]["flats_value_space"] / self.streets[i]["flats_space"]
             )
 
@@ -216,7 +215,7 @@ class TychyPipeline:
                 save_streets_to_db(
                     location=i,
                     flat_number=self.streets[i]["flat_number"],
-                    flat_average_price=self.streets[i]["average_price_m2"],
+                    flat_average_price=self.streets[i]["flat_average_price"],
                     flat_average_rent=None,
                     flat_m2_average_price=self.streets[i]["flat_m2_average_price"],
                 )
@@ -224,11 +223,11 @@ class TychyPipeline:
         add_dict_to_json(self.streets, self.file)
 
         for i in self.districts:
-            self.districts[i]["flat_m2_average_price"] = (
+            self.districts[i]["flat_average_price"] = (
                 self.districts[i]["flats_value"]
                 / self.districts[i]["flats_number_value"]
             )
-            self.districts[i]["average_price_m2"] = (
+            self.districts[i]["flat_m2_average_price"] = (
                 self.districts[i]["flats_value_space"]
                 / self.districts[i]["flats_space"]
             )
@@ -237,7 +236,7 @@ class TychyPipeline:
                 save_districts_to_db(
                     location=i,
                     flat_number=self.districts[i]["flat_number"],
-                    flat_average_price=self.districts[i]["average_price_m2"],
+                    flat_average_price=self.districts[i]["flat_average_price"],
                     flat_average_rent=None,
                     flat_m2_average_price=self.districts[i]["flat_m2_average_price"],
                 )

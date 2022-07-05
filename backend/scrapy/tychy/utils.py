@@ -98,6 +98,7 @@ def save_streets_to_db(
     flat_average_price=None,
     flat_average_rent=None,
     flat_m2_average_price=None,
+    date=date.today()
 ):
     with Session(
         create_engine("postgresql://postgres:postgres@database:5432/postgres")
@@ -108,7 +109,7 @@ def save_streets_to_db(
             flat_average_price=flat_average_price,
             flat_average_rent=flat_average_rent,
             flat_m2_average_price=flat_m2_average_price,
-            date=date.today(),
+            date=date,
         )
         session.add(street_to_db)
         session.commit()
@@ -123,6 +124,7 @@ def save_districts_to_db(
     flat_m2_average_price=None,
     is_district=False,
     is_street=False,
+    date=date.today()
 ):
     with Session(
         create_engine("postgresql://postgres:postgres@database:5432/postgres")
@@ -133,7 +135,7 @@ def save_districts_to_db(
             flat_average_price=flat_average_price,
             flat_average_rent=flat_average_rent,
             flat_m2_average_price=flat_m2_average_price,
-            date=date.today(),
+            date=date,
         )
         session.add(district_to_db)
         session.commit()
@@ -149,7 +151,7 @@ def get_newest_flat():
     return flat
 
 
-def get_newest_stats():
+def get_newest():
     with Session(
         create_engine("postgresql://postgres:postgres@database:5432/postgres")
     ) as session:

@@ -12,8 +12,8 @@
       "flats_space": 2844.38,
       "flats_value_space": 22511429,
       "flats_number_space": 42,
-      "flat_m2_average_price": 535986.4047619047,
-      "average_price_m2": 7914.35356738551
+      "flat_average_price": 535986.4047619047,
+      "flat_m2_average_price": 7914.35356738551
     },
     "bielska": {
       "flat_number": 177,
@@ -22,8 +22,8 @@
       "flats_space": 1693.6799999999996,
       "flats_value_space": 13952117,
       "flats_number_space": 32,
-      "flat_m2_average_price": 436003.65625,
-      "average_price_m2": 8237.752704170802
+      "flat_average_price": 436003.65625,
+      "flat_m2_average_price": 8237.752704170802
     },
     "henryka": {
       "flat_number": 1,
@@ -32,8 +32,8 @@
       "flats_space": 51.0,
       "flats_value_space": 305000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 305000.0,
-      "average_price_m2": 5980.392156862745
+      "flat_average_price": 305000.0,
+      "flat_m2_average_price": 5980.392156862745
     },
     "wincentego": {
       "flat_number": 1,
@@ -42,8 +42,8 @@
       "flats_space": 52.0,
       "flats_value_space": 449000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 449000.0,
-      "average_price_m2": 8634.615384615385
+      "flat_average_price": 449000.0,
+      "flat_m2_average_price": 8634.615384615385
     },
     "hetmańska": {
       "flat_number": 1,
@@ -52,8 +52,8 @@
       "flats_space": 61.5,
       "flats_value_space": 385000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 385000.0,
-      "average_price_m2": 6260.162601626016
+      "flat_average_price": 385000.0,
+      "flat_m2_average_price": 6260.162601626016
     },
     "niepodległości": {
       "flat_number": 2,
@@ -62,8 +62,8 @@
       "flats_space": 101.2,
       "flats_value_space": 571000,
       "flats_number_space": 2,
-      "flat_m2_average_price": 285500.0,
-      "average_price_m2": 5642.292490118577
+      "flat_average_price": 285500.0,
+      "flat_m2_average_price": 5642.292490118577
     },
     "skalna": {
       "flat_number": 1,
@@ -72,8 +72,8 @@
       "flats_space": 24.57,
       "flats_value_space": 225000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 225000.0,
-      "average_price_m2": 9157.509157509157
+      "flat_average_price": 225000.0,
+      "flat_m2_average_price": 9157.509157509157
     },
     "józefa": {
       "flat_number": 1,
@@ -82,8 +82,8 @@
       "flats_space": 64.3,
       "flats_value_space": 420000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 420000.0,
-      "average_price_m2": 6531.881804043546
+      "flat_average_price": 420000.0,
+      "flat_m2_average_price": 6531.881804043546
     },
     "damrota": {
       "flat_number": 2,
@@ -92,8 +92,8 @@
       "flats_space": 83.47999999999999,
       "flats_value_space": 948500,
       "flats_number_space": 2,
-      "flat_m2_average_price": 474250.0,
-      "average_price_m2": 11362.002874940106
+      "flat_average_price": 474250.0,
+      "flat_m2_average_price": 11362.002874940106
     },
     "władysława": {
       "flat_number": 2,
@@ -102,8 +102,8 @@
       "flats_space": 163.76,
       "flats_value_space": 1185000,
       "flats_number_space": 2,
-      "flat_m2_average_price": 592500.0,
-      "average_price_m2": 7236.199316072301
+      "flat_average_price": 592500.0,
+      "flat_m2_average_price": 7236.199316072301
     },
     "ustronna": {
       "flat_number": 1,
@@ -112,8 +112,8 @@
       "flats_space": 48.0,
       "flats_value_space": 329000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 329000.0,
-      "average_price_m2": 6854.166666666667
+      "flat_average_price": 329000.0,
+      "flat_m2_average_price": 6854.166666666667
     },
     "brzozowa": {
       "flat_number": 1,
@@ -122,8 +122,8 @@
       "flats_space": 39.4,
       "flats_value_space": 249000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 249000.0,
-      "average_price_m2": 6319.796954314721
+      "flat_average_price": 249000.0,
+      "flat_m2_average_price": 6319.796954314721
     },
     "rodzeństwa": {
       "flat_number": 1,
@@ -132,8 +132,8 @@
       "flats_space": 62.5,
       "flats_value_space": 380000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 380000.0,
-      "average_price_m2": 6080.0
+      "flat_average_price": 380000.0,
+      "flat_m2_average_price": 6080.0
     },
     "romana": {
       "flat_number": 1,
@@ -142,8 +142,8 @@
       "flats_space": 37.0,
       "flats_value_space": 245000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 245000.0,
-      "average_price_m2": 6621.621621621622
+      "flat_average_price": 245000.0,
+      "flat_m2_average_price": 6621.621621621622
     },
     "cicha": {
       "flat_number": 1,
@@ -152,8 +152,8 @@
       "flats_space": 75.0,
       "flats_value_space": 485000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 485000.0,
-      "average_price_m2": 6466.666666666667
+      "flat_average_price": 485000.0,
+      "flat_m2_average_price": 6466.666666666667
     },
     "dębowa": {
       "flat_number": 1,
@@ -162,8 +162,8 @@
       "flats_space": 50.4,
       "flats_value_space": 362000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 362000.0,
-      "average_price_m2": 7182.539682539683
+      "flat_average_price": 362000.0,
+      "flat_m2_average_price": 7182.539682539683
     },
     "moniuszki": {
       "flat_number": 1,
@@ -172,8 +172,8 @@
       "flats_space": 47.9,
       "flats_value_space": 380000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 380000.0,
-      "average_price_m2": 7933.194154488518
+      "flat_average_price": 380000.0,
+      "flat_m2_average_price": 7933.194154488518
     },
     "wiązowa": {
       "flat_number": 1,
@@ -182,8 +182,8 @@
       "flats_space": 77.42,
       "flats_value_space": 590000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 590000.0,
-      "average_price_m2": 7620.769826918109
+      "flat_average_price": 590000.0,
+      "flat_m2_average_price": 7620.769826918109
     }
   },
   {
@@ -194,8 +194,8 @@
       "flats_space": 555.32,
       "flats_value_space": 3251900,
       "flats_number_space": 11,
-      "flat_m2_average_price": 295627.2727272727,
-      "average_price_m2": 5855.9029028308
+      "flat_average_price": 295627.2727272727,
+      "flat_m2_average_price": 5855.9029028308
     },
     "wilkowyje": {
       "flat_number": 12,
@@ -204,8 +204,8 @@
       "flats_space": 891.09,
       "flats_value_space": 5072647,
       "flats_number_space": 12,
-      "flat_m2_average_price": 422720.5833333333,
-      "average_price_m2": 5692.631496257392
+      "flat_average_price": 422720.5833333333,
+      "flat_m2_average_price": 5692.631496257392
     },
     "śródmieście": {
       "flat_number": 23,
@@ -214,8 +214,8 @@
       "flats_space": 1406.6299999999999,
       "flats_value_space": 8648706,
       "flats_number_space": 23,
-      "flat_m2_average_price": 376030.6956521739,
-      "average_price_m2": 6148.529464038163
+      "flat_average_price": 376030.6956521739,
+      "flat_m2_average_price": 6148.529464038163
     },
     "b": {
       "flat_number": 17,
@@ -224,8 +224,8 @@
       "flats_space": 883.93,
       "flats_value_space": 5887000,
       "flats_number_space": 17,
-      "flat_m2_average_price": 346294.1176470588,
-      "average_price_m2": 6660.029640356137
+      "flat_average_price": 346294.1176470588,
+      "flat_m2_average_price": 6660.029640356137
     },
     "h": {
       "flat_number": 19,
@@ -234,8 +234,8 @@
       "flats_space": 1059.49,
       "flats_value_space": 7219000,
       "flats_number_space": 19,
-      "flat_m2_average_price": 379947.36842105264,
-      "average_price_m2": 6813.655626763821
+      "flat_average_price": 379947.36842105264,
+      "flat_m2_average_price": 6813.655626763821
     },
     "żwaków": {
       "flat_number": 55,
@@ -244,8 +244,8 @@
       "flats_space": 2962.439999999999,
       "flats_value_space": 24380257,
       "flats_number_space": 55,
-      "flat_m2_average_price": 443277.4,
-      "average_price_m2": 8229.789295310624
+      "flat_average_price": 443277.4,
+      "flat_m2_average_price": 8229.789295310624
     },
     "paprocany": {
       "flat_number": 11,
@@ -254,8 +254,8 @@
       "flats_space": 799.1399999999999,
       "flats_value_space": 5019900,
       "flats_number_space": 11,
-      "flat_m2_average_price": 456354.54545454547,
-      "average_price_m2": 6281.627749831069
+      "flat_average_price": 456354.54545454547,
+      "flat_m2_average_price": 6281.627749831069
     },
     "mąkołowiec": {
       "flat_number": 7,
@@ -264,8 +264,8 @@
       "flats_space": 388.15999999999997,
       "flats_value_space": 3369000,
       "flats_number_space": 7,
-      "flat_m2_average_price": 481285.71428571426,
-      "average_price_m2": 8679.410552349547
+      "flat_average_price": 481285.71428571426,
+      "flat_m2_average_price": 8679.410552349547
     },
     "zwierzyniec": {
       "flat_number": 5,
@@ -274,8 +274,8 @@
       "flats_space": 188.53000000000003,
       "flats_value_space": 1422575,
       "flats_number_space": 3,
-      "flat_m2_average_price": 474191.6666666667,
-      "average_price_m2": 7545.616082321115
+      "flat_average_price": 474191.6666666667,
+      "flat_m2_average_price": 7545.616082321115
     },
     "cielmice": {
       "flat_number": 1,
@@ -284,8 +284,8 @@
       "flats_space": 56.9,
       "flats_value_space": 385000,
       "flats_number_space": 1,
-      "flat_m2_average_price": 385000.0,
-      "average_price_m2": 6766.256590509666
+      "flat_average_price": 385000.0,
+      "flat_m2_average_price": 6766.256590509666
     },
     "urbanowice": {
       "flat_number": 3,
@@ -294,8 +294,8 @@
       "flats_space": 136.62,
       "flats_value_space": 1145900,
       "flats_number_space": 3,
-      "flat_m2_average_price": 381966.6666666667,
-      "average_price_m2": 8387.498170106866
+      "flat_average_price": 381966.6666666667,
+      "flat_m2_average_price": 8387.498170106866
     }
   },
   {
