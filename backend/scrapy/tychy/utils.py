@@ -151,7 +151,7 @@ def get_newest_flat():
     return flat
 
 
-def get_newest():
+def get_newest_stats():
     with Session(
         create_engine("postgresql://postgres:postgres@database:5432/postgres")
     ) as session:
