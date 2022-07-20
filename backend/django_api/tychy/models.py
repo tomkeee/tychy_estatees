@@ -41,6 +41,10 @@ class Statistics(models.Model):
     flat_m2_average_price = models.FloatField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
 
+
+    def __str__(self):
+        return f"{self.date} - {self.flat_number}"
+
     class Meta:
         db_table = "flats_statistics"
 
@@ -53,6 +57,8 @@ class Districts(models.Model):
     flat_m2_average_price = models.FloatField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
 
+    def __str__(self):
+        return f"{self.date} - {self.location}"
     class Meta:
         db_table = "flats_districts"
 
